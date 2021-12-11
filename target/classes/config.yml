@@ -1,0 +1,3 @@
+# Het kleuren teken is §
+hologram: '{player}, {leeftijd}, {geslacht}, {land}'
+sql-connection: 'jdbc:mysql://localhost/minecraft-db?user=root&password=test'

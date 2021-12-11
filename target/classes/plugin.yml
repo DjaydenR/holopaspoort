@@ -1,0 +1,20 @@
+name: HoloPassportTSMP
+version: '1.0'
+main: me.djaydenr.holopassporttsmp.HoloPassportTSMP
+api-version: 1.16
+authors: [ DjaydenR ]
+description: De Paspoort plugin van TSMP
+softdepend: [HolographicDisplays, Lands]
+commands:
+  setnaam:
+    usage: setnaam <playernaam> <nieuwenaam>
+    permission: holopaspoort.setnaam
+    permission-message: U heeft hier geen permissies voor
+  setleeftijd:
+    usage: setleeftijd <playernaam> <nieuweleeftijd>
+    permission: holopaspoort.setleeftijd
+    permission-message: U heeft hier geen permissies voor
+  setgeslacht:
+    usage: setgeslacht <playernaam> <nieuwegeslacht>
+    permission: holopaspoort.geslacht
+    permission-message: U heeft hier geen permissies voor
