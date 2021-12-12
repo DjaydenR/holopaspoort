@@ -1,3 +1,6 @@
 # Het kleuren teken is §
 hologram: '{player}, {leeftijd}, {geslacht}, {land}'
-sql-connection: 'jdbc:mysql://localhost/minecraft-db?user=root&password=test'
+databank: 'minecraft-db'
+ipadres: 'localhost'
+gebruikersnaam: 'root'
+wachtwoord: 'test'

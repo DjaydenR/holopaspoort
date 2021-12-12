@@ -12,10 +12,13 @@ import me.djaydenr.holopassporttsmp.tabcompleters.SetLeeftijdTabCompleter;
 import me.djaydenr.holopassporttsmp.tabcompleters.SetNaamTabCompleter;
 import me.djaydenr.holopassporttsmp.tabcompleters.SetgeslachtTabCompleter;
 import me.djaydenr.holopassporttsmp.utils.HologramManager;
+import me.djaydenr.holopassporttsmp.utils.FileEditor;
+import org.apache.ibatis.jdbc.ScriptRunner;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -77,18 +80,39 @@ public final class HoloPassportTSMP extends JavaPlugin {
     private void activateSQL() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection(getConfig().getString("sql-connection"));
+            String database = getConfig().getString("databank");
+            String host = getConfig().getString("ipadres");
+            String username = getConfig().getString("gebruikersnaam");
+            String password = getConfig().getString("wachtwoord");
+            conn = DriverManager.getConnection("jdbc:mysql://" + host + "/" + database + "?user=" + username + "&password=" + password);
 
             System.out.println("De plugin werkt met databank: " + conn.getMetaData().getDatabaseProductName());
 
             // Do something with the Connection
 
+            InputStream inputStream = this.getClass().getResourceAsStream("/" + "create.sql");
+            File file = FileEditor.copyInputStreamToFile(inputStream);
+
+            System.out.println(file.getName());
+
+            FileEditor.modifyFile("./create.sql", "database", database);
+
+            //Initialize the script runner
+            ScriptRunner sr = new ScriptRunner(conn);
+            //Creating a reader object
+            Reader reader = new BufferedReader(new FileReader(file));
+
+
+            //Running the script
+            sr.runScript(reader);
         } catch (SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }

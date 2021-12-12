@@ -15,4 +15,5 @@ me\djaydenr\holopassporttsmp\utils\HologramManager.class
 me\djaydenr\holopassporttsmp\tabcompleters\SetgeslachtTabCompleter.class
 me\djaydenr\holopassporttsmp\commands\Setnaam.class
 me\djaydenr\holopassporttsmp\events\Paspoort.class
+me\djaydenr\holopassporttsmp\utils\FileEditor.class
 me\djaydenr\holopassporttsmp\tabcompleters\SetLeeftijdTabCompleter.class

@@ -1,4 +1,4 @@
-CREATE TABLE `minecraft-db`.PLAYER (
+CREATE TABLE IF NOT EXISTS `database`.PLAYER (
                                        player_id VARCHAR(50) NOT NULL,
                                        naam VARCHAR(50) NOT NULL,
                                        leeftijd INTEGER NULL,
